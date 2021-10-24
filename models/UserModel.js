@@ -1,8 +1,6 @@
 var mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-const Constants = require('../config/Constants');
 const validators = require('../utils/Validators');
-var mongoosePaginate = require('mongoose-paginate');
 var Schema = mongoose.Schema;
 
 // create a schema
@@ -19,11 +17,6 @@ var UserSchema = new Schema({
 		required: 'Email address is required',
 		validate: [validators.email, 'Please fill a valid email address'],
 	},
-	phoneNumber: {
-		type: Number,
-		default: null,
-		required: false
-	},
 	username: {
 		type: String,
 		trim: true,
@@ -38,7 +31,7 @@ var UserSchema = new Schema({
 	},
 	role: {
 		type: String,
-		enum: Constants.USER_ROLE,
+		enum: ['USER', 'ADMIN'],
 		default: 'USER'
 	},
 	isActive: {
@@ -63,18 +56,8 @@ var UserSchema = new Schema({
 
 // the schema is useless so far
 // we need to create a model using it
-UserSchema.plugin(mongoosePaginate);
 const User = module.exports = mongoose.model('User', UserSchema);
 
-module.exports.paginateDocs = function (condition, query, callback) {
-	const options = {
-		page: query.page ? Number(query.page) : 1,
-		limit: query.limit ? Number(query.limit) : 10,
-		populate: query.populate,
-	}
-
-	User.paginate(condition, options, callback);
-}
 
 /**
  * add new User
@@ -106,7 +89,7 @@ module.exports.checkUser = function (condition, callback) {
 module.exports.getById = function (id, callback) {
 	User.findOne({
 		_id: id
-	}, callback).populate('organization');
+	}, callback);
 }
 module.exports.getSingleUser = async function (condition) {
 	return await User.findOne(condition);
