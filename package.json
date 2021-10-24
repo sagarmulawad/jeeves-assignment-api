@@ -1,0 +1,39 @@
+{
+  "name": "jeeves-assignment-api",
+  "version": "1.0.0",
+  "description": "rest api for user authentication and topics",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "npm start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sagarmulawad/jeeves-assignment-api.git"
+  },
+  "dependencies": {
+		"aes-js": "^3.1.2",
+		"bcrypt": "^3.0.0",
+		"bcryptjs": "^2.4.3",
+		"body-parser": "^1.18.3",
+		"connect-multiparty": "^2.2.0",
+		"cors": "^2.8.5",
+		"emailjs": "2.2.0",
+		"express": "^4.16.4",
+		"jsonwebtoken": "8.4.0",
+		"lodash": "4.17.11",
+		"mongoose": "^5.4.4",
+		"mongoose-paginate": "^5.0.3",
+		"mongoose-validator": "^2.1.0",
+		"multer": "^1.4.2",
+		"multiparty": "^4.2.1",
+		"passport": "^0.4.0",
+		"passport-jwt": "^4.0.0"
+	},
+  "author": "sagar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sagarmulawad/jeeves-assignment-api/issues"
+  },
+  "homepage": "https://github.com/sagarmulawad/jeeves-assignment-api#readme"
+}

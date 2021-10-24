@@ -1,0 +1,21 @@
+{
+    "development": {
+        "config_id": "development",
+        "node_port": 3000,
+        "db_url": "mongodb://localhost:27017/jeeves"
+    },
+    "testing": {
+        "config_id": "testing",
+        "db_url": "mongodb://localhost:27017/jeeves"
+    },
+    "staging": {
+        "config_id": "staging",
+        "node_port": 3000,
+        "db_url": "mongodb://localhost:27017/jeeves"
+    },
+    "production": {
+        "config_id": "production",
+        "node_port": 3000,
+        "db_url": "mongodb://localhost:27017/jevees"
+    }
+}
