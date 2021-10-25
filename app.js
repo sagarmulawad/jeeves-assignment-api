@@ -8,18 +8,19 @@ const passport = require('passport');
 var mongoose = require('mongoose');
 const path = require('path');
 mongoose.set('useFindAndModify', false);
+var bodyParser = require('body-parser');
 
 app.use(cors());
+app.use(bodyParser.urlencoded({ limit: "100mb", extended: false, parameterLimit: 50000 }));
+app.use(bodyParser.json({ limit: "100mb"}));
 // connect to our mongoDB database 
 mongoose.connect(config.db_url, { useNewUrlParser: true, useCreateIndex: true });
 
 mongoose.connection.on("connected", function () {
 	console.log("Connected to DB");
-	// logger.info("connected to db");
 });
 mongoose.connection.on('error', () => {
 	console.log("error in Connecting to DB");
-	// logger.error("error in connecting to db" + err);
 
 });
 
@@ -35,6 +36,7 @@ app.use(passport.session());
 require('./config/PassportConfig')(passport);
 
 app.use('/users', require('./controllers/UserController'));
+app.use('/topics', require('./controllers/TopicController'));
 
 app.get('*', function (req, res) {
 	res.send('invalid rest point');
